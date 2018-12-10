@@ -47,20 +47,23 @@ $ docker pull chuvpne/pne-docker
 ## Usage
 
 If not done yet, create a new project directory for your analysis:
+
 ```
 $ mkdir my_project_dir
 ```
 
 OR, you can get a copy of a R project template from https://github.com/chuvpne (per example the dada2 analysis template):
+
 ```
 $ git clone https://github.com/chuvpne/dada2.git my_project_dir
 ```
 
 Run a docker container:
+
 ```
 # The -v argument is used to give the docker container access to your local project directory.
 # Replace "/path/to/my_project_dir" by the right path to your project directory.
-$ docker run --rm -v /path/to/my_project_dir:/home/rstudio/project -p 8787:8787 -ti chuvpne/pne-docker
+$ docker run --rm -v /path/to/my_project_dir:/home/rstudio/project -p 8787:8787 -tid chuvpne/pne-docker
 ```
 
 RStudio server is now running within a docker container, access it from a web browser at the address <a href="localhost:8787" target="_blank">"localhost:8787"</a> and login using the following credentials:
