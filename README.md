@@ -1,22 +1,16 @@
 RStudio server and data analysis tools on docker
 ================================================
 
-Docker images contain light-weight copies of an operating system. Here we have created a docker image with a pre-installed RStudio server and the illumina-utils FASTQ file processing toolbox.
-
-This docker image provides a working environment that is easy to deploy across machines and platforms, ensuring reproducibility of data analyses.
-
-This docker image is primarily dedicated to provide a stable working environment for metagenomic data analysis. R Notebook templates that can be used with RStudio server running on an instance of this docker image (a docker container) are available at https://github.com/chuvpne.
-
-Note: Commands described in this documentation assume that you are using a Unix CLI.
+An image based on rocker/rstudio.
 
 ## Resources
 
 * Git clone URL: https://github.com/chuvpne/pne-docker.git
 * Documentation: https://github.com/chuvpne/pne-docker
 * Docker image: https://hub.docker.com/r/chuvpne/pne-docker
+* rocker/rstudio image: https://hub.docker.com/r/rocker/rstudio
 * RStudio server: https://www.rstudio.com/products/rstudio/download-server
 * illumina-utils: https://github.com/merenlab/illumina-utils
-* Using the DADA2 pipeline for sequence variant identification: https://github.com/chuvpne/dada2
 
 ## Rights
 
@@ -63,17 +57,33 @@ $ git clone https://github.com/chuvpne/dada2.git my_project_dir
 
 Run a docker container:
 
-```
-# The -v argument is used to give the docker container access to your local project directory.
-# Replace "/path/to/my_project_dir" by the right path to your project directory.-
+$USER and $UID are the current user and UID, they need to be specified in order to conserve permissions when editing files in the project.
 
-$ docker run --rm -v /path/to/my_project_dir:/home/rstudio/project -p 8787:8787 -tid chuvpne/pne-docker
+The following command should output somethign like "alice:1000", alice being the current user and 1000 its associated UID:
+```
+$ echo $USER:$UID
+alice:1000
+```
+
+
+"yourpassword" will be used to login into RStudio server, replace it with the password of your choice (but not by "rstudio").
+
+The -v argument is used to give the docker container access to your local project directory.
+Replace "/path/to/my_project_dir" by the right path to your project directory.
+
+```
+$ docker run --rm -it -p 8787:8787 \
+-e USER=$USER \
+-e USERID=$UID \
+-e PASSWORD=yourpassword \
+-v /path/to/my_project_dir:/home/$USER/project \
+chuvpne/pne-docker
 ```
 
 
 RStudio server is now running within a docker container, access it from a web browser at the address [localhost:8787](localhost:8787) and login using the following credentials:
-* user: rstudio
-* password: rstudio
+* user: "$USER" as set in the docker run command (per example: "alice")
+* password: "yourpassword" as set in the docker run command
 
 From the Rstudio server web interface, set the `project` directory as your working directory.
 
