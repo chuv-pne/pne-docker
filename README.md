@@ -1,7 +1,9 @@
 RStudio server and data analysis tools on docker
 ================================================
 
-An image based on rocker/rstudio.
+This image is based on the rocker/rstudio image provided by the rocker team (https://github.com/rocker-org).
+
+It includes additional tools and provides a dockerized working environment that improves the reproducibility of data analyses across projects.
 
 ## Resources
 
