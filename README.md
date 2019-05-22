@@ -10,7 +10,7 @@ It includes additional tools and provides a dockerized working environment that 
 * Git clone URL: https://github.com/chuvpne/pne-docker.git
 * Documentation: https://github.com/chuvpne/pne-docker
 * Docker image: https://hub.docker.com/r/chuvpne/pne-docker
-* Base image: https://hub.docker.com/r/chuvpne/pne-docker-base
+* Parent image: https://hub.docker.com/r/chuvpne/pne-docker-base
 * rocker/rstudio image: https://hub.docker.com/r/rocker/rstudio
 * RStudio server: https://www.rstudio.com/products/rstudio/download-server
 * illumina-utils: https://github.com/merenlab/illumina-utils
